@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
 	context : __dirname,
 	devtool : debug ? 'inline-sourcemap' : null,
-	entry : './app/dist/index.js',
+	entry : './app/src/index.jsx',
 	module : {
 		loaders : [
 		{
@@ -13,13 +13,13 @@ module.exports = {
 			loader : 'babel-loader',
 			query : {
 				presets : ['react', 'es2015', 'stage-0'],
-				plugin : ['react-html-attr', 'transform-class-properties', 'transform-decorators-legacy']
+				//plugin : ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
 			}
 		}
 		]
 	},
 	output : {
-		path : __dirname + '/app/js',
+		path : __dirname + '/app/dist/js/',
 		filename : 'index.min.js'
 	},
 	plugins : debug ? [] : [
