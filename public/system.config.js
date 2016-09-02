@@ -2,7 +2,10 @@ SystemJS.config({
 	map : {
 		'axios' : '/node_modules/axios/dist/axios.min.js',
 		'react' : '/node_modules/react/dist/react.js',
-		'react-dom' : '/node_modules/react-dom/dist/react-dom.js'
+		'react-dom' : '/node_modules/react-dom/dist/react-dom.js',
+		'react-redux' : '/node_modules/react-redux/dist/react-redux.min.js',
+		'redux' : '/node_modules/redux/dist/redux.min.js',
+		'redux-thunk' : '/node_modules/redux/dist/redux-thunk.min.js'
 	}
 });
 SystemJS.config({
