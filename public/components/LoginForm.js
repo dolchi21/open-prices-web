@@ -12,8 +12,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _modulesAuthJs = require('/modules/Auth.js');
-
 require('/css/LoginForm.less');
 
 var LoginForm = _react2['default'].createClass({
@@ -23,6 +21,13 @@ var LoginForm = _react2['default'].createClass({
 		return {};
 	},
 	render: function render() {
+		var _this = this;
+
+		if (this.props.token) {
+			setTimeout(function () {
+				window.location.href = '/members/';
+			}, 1000);
+		}
 		return _react2['default'].createElement(
 			'form',
 			{ id: 'LoginForm', className: 'form-horizontal', onSubmit: this.handleSubmit },
@@ -61,9 +66,44 @@ var LoginForm = _react2['default'].createClass({
 					'div',
 					{ className: 'col-sm-offset-2 col-sm-10' },
 					_react2['default'].createElement(
-						'button',
-						{ className: 'btn btn-default' },
-						'Login'
+						'p',
+						{ className: 'form-control-static' },
+						this.props.token
+					)
+				)
+			),
+			_react2['default'].createElement(
+				'div',
+				{ className: 'form-group' },
+				_react2['default'].createElement(
+					'div',
+					{ className: 'col-sm-offset-2 col-sm-10' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'btn-group' },
+						_react2['default'].createElement(
+							'button',
+							{ className: 'btn btn-default' },
+							(function () {
+								if (_this.props.token) {
+									return _react2['default'].createElement(
+										'span',
+										null,
+										'Logging in...'
+									);
+								}
+								return _react2['default'].createElement(
+									'span',
+									null,
+									'Login'
+								);
+							})()
+						),
+						_react2['default'].createElement(
+							'button',
+							{ className: 'btn btn-default', type: 'reset', onClick: this.handleLogout },
+							'Logout'
+						)
 					)
 				)
 			)
@@ -71,8 +111,11 @@ var LoginForm = _react2['default'].createClass({
 	},
 	handleSubmit: function handleSubmit(ev) {
 		ev.preventDefault();
-		console.log(this.state);
-		(0, _modulesAuthJs.login)(this.state.username, this.state.password)(function () {});
+		this.props.onSubmit(this.state.username, this.state.password);
+	},
+	handleLogout: function handleLogout(ev) {
+		ev.preventDefault();
+		this.props.onLogout();
 	},
 	handleChange: function handleChange(ev) {
 		var name = ev.target.name;
@@ -80,6 +123,15 @@ var LoginForm = _react2['default'].createClass({
 		this.setState(_defineProperty({}, name, value));
 	}
 });
+
+LoginForm.defaultProps = {
+	onSubmit: function onSubmit() {
+		console.warn('Submit not implemented.');
+	},
+	onLogout: function onLogout() {
+		console.warn('Logout not implemented.');
+	}
+};
 
 exports['default'] = LoginForm;
 module.exports = exports['default'];

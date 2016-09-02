@@ -20,11 +20,11 @@
 
 		imports.push(SystemJS.import('react'));
 		imports.push(SystemJS.import('react-dom'));
-		imports.push(SystemJS.import('/components/Home.js'));
+		imports.push(SystemJS.import('app.js'));
 
-		Promise.all(imports).spread(function(React, ReactDOM, Home){
+		Promise.all(imports).spread(function(React, ReactDOM, App){
 
-			ReactDOM.render(React.createElement(Home), document.getElementById('app'))
+			ReactDOM.render(App, document.getElementById('app'))
 
 		});
 

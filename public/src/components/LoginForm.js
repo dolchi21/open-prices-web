@@ -1,14 +1,19 @@
 import React from 'react';
 
-import { login } from '/modules/Auth.js';
 
 require('/css/LoginForm.less');
+
 
 var LoginForm = React.createClass({
 	getInitialState : function getInitialState(){
 		return {}
 	},
 	render : function render(){
+		if (this.props.token) {
+			setTimeout(function(){
+				window.location.href = '/members/';
+			}, 1000);
+		}
 		return (
 			<form id="LoginForm" className="form-horizontal" onSubmit={this.handleSubmit}>
 				<div className="form-group">
@@ -25,9 +30,26 @@ var LoginForm = React.createClass({
 				</div>
 				<div className="form-group">
 					<div className="col-sm-offset-2 col-sm-10">
-						<button className="btn btn-default">
-							Login
-						</button>
+						<p className="form-control-static">{this.props.token}</p>
+					</div>
+				</div>
+				<div className="form-group">
+					<div className="col-sm-offset-2 col-sm-10">
+						
+						<div className="btn-group">
+							<button className="btn btn-default">
+								{()=>{
+									if (this.props.token) {
+										return <span>Logging in...</span>
+									}
+									return <span>Login</span>
+								}()}
+							</button>
+							<button className="btn btn-default" type="reset" onClick={this.handleLogout}>
+								Logout
+							</button>
+						</div>
+
 					</div>
 				</div>
 			</form>
@@ -35,16 +57,24 @@ var LoginForm = React.createClass({
 	},
 	handleSubmit : function handleSubmit(ev){
 		ev.preventDefault();
-		console.log(this.state)
-		login(this.state.username, this.state.password)(function(){});
+		this.props.onSubmit(this.state.username, this.state.password);
+	},
+	handleLogout : function handleLogout(ev){
+		ev.preventDefault();
+		this.props.onLogout();
 	},
 	handleChange : function handleChange(ev){
 		var name = ev.target.name;
 		var value = ev.target.value;
 		this.setState({
 			[name] : value
-		})
+		});
 	}
 });
+
+LoginForm.defaultProps = {
+	onSubmit : function onSubmit(){ console.warn('Submit not implemented.'); },
+	onLogout : function onLogout(){ console.warn('Logout not implemented.'); }
+}
 
 export default LoginForm;

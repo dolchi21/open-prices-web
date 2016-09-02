@@ -5,7 +5,9 @@ SystemJS.config({
 		'react-dom' : '/node_modules/react-dom/dist/react-dom.js',
 		'react-redux' : '/node_modules/react-redux/dist/react-redux.min.js',
 		'redux' : '/node_modules/redux/dist/redux.min.js',
-		'redux-thunk' : '/node_modules/redux/dist/redux-thunk.min.js'
+		'redux-logger' : '/node_modules/redux-logger/dist/index.js',
+		'redux-thunk' : '/node_modules/redux-thunk/dist/redux-thunk.min.js',
+		'store' : '/node_modules/store/store.min.js'
 	}
 });
 SystemJS.config({
@@ -23,9 +25,7 @@ SystemJS.config({
 		},
 		css: { main: 'css.js' },
 		less: { main: 'less.js' }
-	}
-});
-SystemJS.config({
+	},
 	meta: {
 		'*.less': { loader: 'less' }
 	}

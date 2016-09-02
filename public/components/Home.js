@@ -10,9 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LoginFormJs = require('./LoginForm.js');
+var _containersLoginFormJs = require('../containers/LoginForm.js');
 
-var _LoginFormJs2 = _interopRequireDefault(_LoginFormJs);
+var _containersLoginFormJs2 = _interopRequireDefault(_containersLoginFormJs);
 
 require('/css/Home.less');
 
@@ -35,7 +35,7 @@ var Home = _react2['default'].createClass({
 			_react2['default'].createElement(
 				'div',
 				{ className: 'LoginForm-container' },
-				_react2['default'].createElement(_LoginFormJs2['default'], null)
+				_react2['default'].createElement(_containersLoginFormJs2['default'], null)
 			)
 		);
 	}

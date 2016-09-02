@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoginForm from './LoginForm.js';
+import LoginForm from '../containers/LoginForm.js';
 
 require('/css/Home.less');
 
