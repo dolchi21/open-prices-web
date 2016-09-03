@@ -29,6 +29,10 @@ app.use(function hideSequelizeError(err, req, res, next){
 	next(err);
 });
 
+app.use(function onNotFound(err, req, res, next){
+	res.status(404).sendFile(path.join(__dirname, '/public/error-404.html'));
+});
+
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.json({
