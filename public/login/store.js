@@ -16,6 +16,10 @@ var _reduxLogger = require('redux-logger');
 
 var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
+var _enhancersCheckpointJs = require('/enhancers/checkpoint.js');
+
+var _enhancersCheckpointJs2 = _interopRequireDefault(_enhancersCheckpointJs);
+
 var _modulesAuthJs = require('/modules/Auth.js');
 
 var _modulesAuthJs2 = _interopRequireDefault(_modulesAuthJs);
@@ -24,9 +28,12 @@ var reducers = (0, _redux.combineReducers)({
 	auth: _modulesAuthJs2['default']
 });
 
-var store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk2['default'], (0, _reduxLogger2['default'])()));
+var checkpoint = (0, _enhancersCheckpointJs2['default'])({
+	key: window.location.pathname
+});
+var middlewares = (0, _redux.applyMiddleware)(checkpoint, _reduxThunk2['default'], (0, _reduxLogger2['default'])());
 
-store.dispatch((0, _modulesAuthJs.restore)());
+var store = (0, _redux.createStore)(reducers, middlewares);
 
 exports['default'] = store;
 module.exports = exports['default'];

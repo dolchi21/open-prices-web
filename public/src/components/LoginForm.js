@@ -40,7 +40,9 @@ var LoginForm = React.createClass({
 							<button className="btn btn-default">
 								{()=>{
 									if (this.props.token) {
-										return <span>Logging in...</span>
+										return (
+											<span><i className="fa fa-spinner fa-pulse"/> Logging in...</span>
+											);
 									}
 									return <span>Login</span>
 								}()}

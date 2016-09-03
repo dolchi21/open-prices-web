@@ -89,7 +89,8 @@ var LoginForm = _react2['default'].createClass({
 									return _react2['default'].createElement(
 										'span',
 										null,
-										'Logging in...'
+										_react2['default'].createElement('i', { className: 'fa fa-spinner fa-pulse' }),
+										' Logging in...'
 									);
 								}
 								return _react2['default'].createElement(

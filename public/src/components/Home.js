@@ -11,8 +11,8 @@ var Home = React.createClass({
 				<div>
 					<h1>HOME</h1>
 				</div>
-				<div className="LoginForm-container">
-					<LoginForm/>
+				<div>
+					<a href="/login">login</a>
 				</div>
 			</div>
 			);

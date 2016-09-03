@@ -16,13 +16,13 @@ var _storeJs = require('./store.js');
 
 var _storeJs2 = _interopRequireDefault(_storeJs);
 
-var _componentsHomeJs = require('/components/Home.js');
+var _containersLoginFormJs = require('/containers/LoginForm.js');
 
-var _componentsHomeJs2 = _interopRequireDefault(_componentsHomeJs);
+var _containersLoginFormJs2 = _interopRequireDefault(_containersLoginFormJs);
 
 exports['default'] = _react2['default'].createElement(
 	_reactRedux.Provider,
 	{ store: _storeJs2['default'] },
-	_react2['default'].createElement(_componentsHomeJs2['default'], null)
+	_react2['default'].createElement(_containersLoginFormJs2['default'], null)
 );
 module.exports = exports['default'];

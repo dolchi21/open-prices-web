@@ -8,6 +8,7 @@ export const LOGIN_ERROR = 'AUTH/LOGIN_ERROR';
 export const LOGOUT = 'AUTH/LOGOUT';
 
 export const RESTORE = 'AUTH/RESTORE';
+export const SAVE = 'AUTH/SAVE';
 
 
 export var API = {
@@ -15,20 +16,19 @@ export var API = {
 }
 
 
+var defaultState = restore() || {}
 export default function reducer(state = {}, action){
 
 	var { type, payload } = action;
 
 	switch (type) {
 
-		case RESTORE:
 		case LOGIN_SUCCESS:
 		return Object.assign({}, state, {
 			token : payload
 		});
 
 		case LOGOUT:
-		removeToken();
 		case LOGIN_ERROR:
 		return Object.assign({}, state, {
 			token : null
@@ -53,19 +53,16 @@ export function login(username, password){
 
 			var token = response.data.token;
 
-			storeToken(token);
-
 			return dispatch({
 				type : LOGIN_SUCCESS,
-				payload : token
+				payload : username+'.'+password
 			});
 
 		}).catch(function(err){
 
-			storeToken('err.new.token');
 			return dispatch({
 				type : LOGIN_SUCCESS,
-				payload : 'err.new.token'
+				payload : username+'.'+password
 			});
 
 			return dispatch({
@@ -82,28 +79,13 @@ export function login(username, password){
 	}
 
 }
-export function restore(){
-	var token = getToken();
-	return {
-		type : RESTORE,
-		payload : token
-	}
-}
 export function logout(){
 	return {
 		type : LOGOUT
 	}
 }
 
-function storeToken(token){
-	var AUTH = Object.assign({ token }, store.get('module.AUTH'));
-	store.set('AUTH', AUTH);
-	return token;
-}
-function getToken(){
-	var AUTH = store.get('AUTH') || {};
-	return AUTH.token;
-}
-function removeToken(){
-	return storeToken(null);
+function restore(){
+	var state = store.get(window.location.pathname);
+	return state.auth;
 }

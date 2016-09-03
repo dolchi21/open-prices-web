@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 
 import Store from './store.js';
 
-import Home from '/components/Home.js';
+import LoginForm from '/containers/LoginForm.js';
 
 export default (
 	<Provider store={Store}>
-		<Home/>
+		<LoginForm/>
 	</Provider>
 	);

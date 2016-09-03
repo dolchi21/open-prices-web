@@ -34,8 +34,12 @@ var Home = _react2['default'].createClass({
 			),
 			_react2['default'].createElement(
 				'div',
-				{ className: 'LoginForm-container' },
-				_react2['default'].createElement(_containersLoginFormJs2['default'], null)
+				null,
+				_react2['default'].createElement(
+					'a',
+					{ href: '/login' },
+					'login'
+				)
 			)
 		);
 	}
