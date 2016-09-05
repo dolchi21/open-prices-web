@@ -1,6 +1,7 @@
 SystemJS.config({
 	map : {
 		'axios' : '/node_modules/axios/dist/axios.js',
+		'bluebird' : '/node_modules/bluebird/js/browser/bluebird.js',
 		'react' : '/node_modules/react/dist/react.js',
 		'react-dom' : '/node_modules/react-dom/dist/react-dom.js',
 		'react-redux' : '/node_modules/react-redux/dist/react-redux.js',
@@ -19,7 +20,7 @@ SystemJS.config({
 	packages: {
 		lesscss: {
 			main: {
-				browser: './dist/less.min.js',
+				browser: './dist/less.js',
 				node: '@node/less'
 			}
 		},
