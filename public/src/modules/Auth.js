@@ -2,6 +2,9 @@ import axios from 'axios';
 import store from 'store';
 
 
+import API from '/api/auth.js';	
+
+
 export const LOGIN = 'AUTH/LOGIN';
 export const LOGIN_SUCCESS = 'AUTH/LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'AUTH/LOGIN_ERROR';
@@ -11,12 +14,6 @@ export const RESTORE = 'AUTH/RESTORE';
 export const SAVE = 'AUTH/SAVE';
 
 
-export var API = {
-	LOGIN : '/api/login/'
-}
-
-
-var defaultState = restore() || {}
 export default function reducer(state = {}, action){
 
 	var { type, payload } = action;
@@ -44,12 +41,10 @@ export default function reducer(state = {}, action){
 
 
 export function login(username, password){
-	
+
 	return function(dispatch){
 		
-		return axios.post(API.LOGIN || '/api/login/', {
-			username, password
-		}).then(function(response){
+		return API.login(username, password).then(function(response){
 
 			var token = response.data.token;
 
@@ -59,12 +54,7 @@ export function login(username, password){
 			});
 
 		}).catch(function(err){
-
-			return dispatch({
-				type : LOGIN_SUCCESS,
-				payload : username+'.'+password
-			});
-
+			
 			return dispatch({
 				type : LOGIN_ERROR,
 				payload : err
@@ -83,9 +73,4 @@ export function logout(){
 	return {
 		type : LOGOUT
 	}
-}
-
-function restore(){
-	var state = store.get(window.location.pathname);
-	return state.auth;
 }

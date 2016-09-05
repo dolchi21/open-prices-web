@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
@@ -15,6 +15,9 @@ var checkpoint = Checkpoint({
 });
 var middlewares = applyMiddleware(checkpoint, thunk, createLogger());
 
-var store = createStore(reducers, middlewares);
+var store = createStore(reducers, compose(
+	middlewares,
+	window.devToolsExtension ? window.devToolsExtension() : f => f
+	));
 
 export default store;

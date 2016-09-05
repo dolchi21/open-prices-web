@@ -17,6 +17,10 @@ var _store = require('store');
 
 var _store2 = _interopRequireDefault(_store);
 
+var _apiAuthJs = require('/api/auth.js');
+
+var _apiAuthJs2 = _interopRequireDefault(_apiAuthJs);
+
 var LOGIN = 'AUTH/LOGIN';
 exports.LOGIN = LOGIN;
 var LOGIN_SUCCESS = 'AUTH/LOGIN_SUCCESS';
@@ -31,12 +35,6 @@ exports.RESTORE = RESTORE;
 var SAVE = 'AUTH/SAVE';
 
 exports.SAVE = SAVE;
-var API = {
-	LOGIN: '/api/login/'
-};
-
-exports.API = API;
-var defaultState = restore() || {};
 
 function reducer(state, action) {
 	if (state === undefined) state = {};
@@ -66,9 +64,7 @@ function login(username, password) {
 
 	return function (dispatch) {
 
-		return _axios2['default'].post(API.LOGIN || '/api/login/', {
-			username: username, password: password
-		}).then(function (response) {
+		return _apiAuthJs2['default'].login(username, password).then(function (response) {
 
 			var token = response.data.token;
 
@@ -77,11 +73,6 @@ function login(username, password) {
 				payload: username + '.' + password
 			});
 		})['catch'](function (err) {
-
-			return dispatch({
-				type: LOGIN_SUCCESS,
-				payload: username + '.' + password
-			});
 
 			return dispatch({
 				type: LOGIN_ERROR,
@@ -99,9 +90,4 @@ function logout() {
 	return {
 		type: LOGOUT
 	};
-}
-
-function restore() {
-	var state = _store2['default'].get(window.location.pathname);
-	return state.auth;
 }

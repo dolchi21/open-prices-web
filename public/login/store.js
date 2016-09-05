@@ -33,7 +33,9 @@ var checkpoint = (0, _enhancersCheckpointJs2['default'])({
 });
 var middlewares = (0, _redux.applyMiddleware)(checkpoint, _reduxThunk2['default'], (0, _reduxLogger2['default'])());
 
-var store = (0, _redux.createStore)(reducers, middlewares);
+var store = (0, _redux.createStore)(reducers, (0, _redux.compose)(middlewares, window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	return f;
+}));
 
 exports['default'] = store;
 module.exports = exports['default'];
