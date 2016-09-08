@@ -8,7 +8,12 @@ SystemJS.config({
 		'redux' : '/node_modules/redux/dist/redux.js',
 		'redux-logger' : '/node_modules/redux-logger/dist/index.js',
 		'redux-thunk' : '/node_modules/redux-thunk/dist/redux-thunk.js',
-		'store' : '/node_modules/store/store.js'
+		'store' : '/node_modules/store/store.js',
+	}
+});
+SystemJS.config({
+	map : {
+		'socket.io-client' : 'https://cdn.socket.io/socket.io-1.4.5.js',
 	}
 });
 SystemJS.config({

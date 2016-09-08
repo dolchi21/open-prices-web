@@ -15,7 +15,7 @@ var _configJs = require('./config.js');
 
 function login(username, password) {
 
-	return _axios2['default'].post(_configJs.baseURL + '/login/', {
+	return _axios2['default'].post(_configJs.baseURL + '/auth/login/', {
 		username: username, password: password
 	});
 }

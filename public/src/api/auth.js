@@ -4,7 +4,7 @@ import { baseURL } from './config.js';
 
 export function login(username, password){
 	
-	return axios.post(baseURL + '/login/', {
+	return axios.post(baseURL + '/auth/login/', {
 		username, password
 	});
 

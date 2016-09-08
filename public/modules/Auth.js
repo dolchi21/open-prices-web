@@ -66,11 +66,11 @@ function login(username, password) {
 
 		return _apiAuthJs2['default'].login(username, password).then(function (response) {
 
-			var token = response.data.token;
+			var token = response.data.data;
 
 			return dispatch({
 				type: LOGIN_SUCCESS,
-				payload: username + '.' + password
+				payload: token
 			});
 		})['catch'](function (err) {
 

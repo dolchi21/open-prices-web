@@ -25,6 +25,8 @@
 		imports.push(SystemJS.import('react-dom'));
 		imports.push(SystemJS.import('app.js'));
 
+		SystemJS.import('https://cobranzas.github.io/components/JTable.js').then(function(JTable){});
+
 		Promise.all(imports).spread(function(React, ReactDOM, App){
 
 			ReactDOM.render(App, document.getElementById('app'))
