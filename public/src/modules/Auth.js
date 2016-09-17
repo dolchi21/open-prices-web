@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from 'store';
 
 
-import API from '/api/auth.js';	
+import API from '../api/auth.js';	
 
 
 export const LOGIN = 'AUTH/LOGIN';

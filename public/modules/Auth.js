@@ -17,7 +17,7 @@ var _store = require('store');
 
 var _store2 = _interopRequireDefault(_store);
 
-var _apiAuthJs = require('/api/auth.js');
+var _apiAuthJs = require('../api/auth.js');
 
 var _apiAuthJs2 = _interopRequireDefault(_apiAuthJs);
 
