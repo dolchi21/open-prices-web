@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node bin/www",
     "build": "babel public/src/ -d public/",
-    "build-start" : "npm run build && npm start",
+    "build-start": "npm run build && npm start",
     "test": "mocha"
   },
   "author": "",
@@ -29,5 +29,8 @@
     "systemjs": "^0.19.37",
     "systemjs-plugin-css": "^0.1.27",
     "systemjs-plugin-less": "^0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2"
   }
 }
